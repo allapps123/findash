@@ -3,7 +3,8 @@ import { promises as fs } from "fs";
 import path from "path";
 import * as XLSX from "xlsx";
 
-export const runtime = "edge";
+// Use Node.js runtime for file system operations
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   // Kiểm tra nếu là mapping request

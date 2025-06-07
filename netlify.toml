@@ -1,0 +1,34 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[dev]
+  port = 8888
+  command = "npm run client"
+  framework = "#auto"
+  targetPort = 3000
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@heroicons/react", "framer-motion", "html2canvas", "jspdf", "react", "react-dom", "next", "xlsx"]
+  included_files = ["src/app/api/**/*"]
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
+  NODE_OPTIONS = "--experimental-modules"
+
+# Next.js specific settings for Netlify
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Headers for better performance and CORS
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization" 

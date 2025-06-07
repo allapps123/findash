@@ -1,6 +1,13 @@
-# FinDash - Financial Analysis Dashboard
+# 📊 FinDash - Financial Analysis Dashboard
 
-FinDash is a powerful web application for analyzing financial statements and generating comprehensive financial insights. Built with Next.js and TypeScript, it provides automated financial ratio calculations, DuPont analysis, and interactive forecasting capabilities.
+FinDash is a comprehensive full-stack financial analysis platform that transforms raw financial data into actionable insights. Built with Next.js 15, React 19, and TypeScript, deployed on Netlify with serverless functions for scalable performance.
+
+## 🎯 **What makes FinDash unique?**
+- **🚀 One-Command Setup**: `netlify dev` starts both frontend and API backend
+- **🤖 Smart Data Processing**: Auto-detects financial statement formats in multiple languages
+- **📈 Real-time Analysis**: Instant calculation of 20+ financial ratios with interactive charts
+- **📄 Professional Reports**: Generate publication-ready PDF reports with custom branding
+- **🌐 Full-Stack Ready**: Seamless integration with 15+ external APIs and services
 
 ## 🚀 Features
 
@@ -56,6 +63,7 @@ FinDash is a powerful web application for analyzing financial statements and gen
 ### Prerequisites
 - Node.js 18+ and npm/yarn
 - Modern web browser with JavaScript enabled
+- Netlify CLI (for full-stack development)
 
 ### Installation
 
@@ -74,13 +82,18 @@ FinDash is a powerful web application for analyzing financial statements and gen
 
 3. **Start development server**
    ```bash
-   npm run dev
+   # Recommended: Full-stack development with Netlify
+   netlify dev
    # or
-   yarn dev
+   npm run netlify:dev
+   
+   # Alternative: Next.js only
+   npm run dev
    ```
 
 4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+   - **Netlify Dev**: [http://localhost:8888](http://localhost:8888) (recommended)
+   - **Next.js Dev**: [http://localhost:3000](http://localhost:3000)
 
 ## 📋 Usage Guide
 
@@ -197,6 +210,80 @@ Professional PDF generation system featuring:
 - [ ] **Custom Metrics Builder**: Create and track custom financial metrics
 - [ ] **Automated Insights**: AI-powered financial commentary and recommendations
 - [ ] **Alert System**: Threshold-based notifications for key metrics
+
+## 🔧 Troubleshooting
+
+### Common Issues & Solutions
+
+**🚨 "netlify dev" command not found**
+```bash
+# Install Netlify CLI globally
+npm install -g netlify-cli
+
+# Or use npx
+npx netlify dev
+```
+
+**🚨 Port 8888 already in use**
+```bash
+# Kill existing process
+lsof -ti:8888 | xargs kill
+
+# Or use different port
+netlify dev --port 9999
+```
+
+**🚨 API routes not working**
+```bash
+# Check if functions are running
+netlify dev --debug
+
+# Test API endpoints
+curl http://localhost:8888/api/health
+```
+
+**🚨 Environment variables not loading**
+```bash
+# Check Netlify site connection
+netlify status
+
+# Link to Netlify site
+netlify link
+
+# Check environment variables
+netlify env:list
+```
+
+**🚨 Build failures**
+```bash
+# Clear Next.js cache
+rm -rf .next
+npm run build
+
+# Clear node_modules
+rm -rf node_modules
+npm install
+```
+
+### 📞 Support & Contributing
+
+**Need Help?**
+- 📚 Check the [Netlify Docs](https://docs.netlify.com/cli/get-started/)
+- 🐛 [Report Issues](https://github.com/yourusername/fin-dash/issues)
+- 💬 [Discussions](https://github.com/yourusername/fin-dash/discussions)
+
+**Contributing:**
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+---
+
+**Built with ❤️ using Next.js 15, React 19, and Netlify Functions**
+
+⭐ **Star this repo if FinDash helps your financial analysis workflow!**
 
 ### 🔗 **Phase 4: Integration & Collaboration** (Future)
 - [ ] **API Integrations**: Connect to QuickBooks, Xero, and other accounting platforms
@@ -340,3 +427,119 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Customizable Sections**: Choose which sections to include in your report
 - **Company Branding**: Add company name and custom report titles
 - **Professional Layout**: Multi-page formatting with headers, footers, and consistent styling
+
+## 🌐 Netlify Development & Deployment
+
+This project is fully configured for Netlify with seamless full-stack development and deployment.
+
+### 🚀 Development Commands
+
+```bash
+# 🎯 Recommended: Full-stack development
+netlify dev                # Starts frontend + backend on localhost:8888
+npm run netlify:dev       # Alternative command
+
+# 🔧 Alternative: Next.js only
+npm run dev               # Next.js dev server on localhost:3000
+
+# 📦 Production build
+npm run netlify:build     # Optimized build for Netlify deployment
+npm run build            # Standard Next.js build
+```
+
+### ⚙️ Configuration Details
+
+**`netlify.toml` Features:**
+- ✅ **Unified Development**: Single command runs frontend + backend
+- ✅ **Port Management**: Netlify proxy (8888) → Next.js (3000)
+- ✅ **API Routing**: Automatic proxy of `/api/*` routes to Next.js
+- ✅ **Environment Variables**: Automatic injection from Netlify dashboard
+- ✅ **CORS Headers**: Pre-configured for cross-origin requests
+- ✅ **Build Optimization**: Node.js 18 with esbuild bundling
+
+### 🛠️ API Routes & Functions
+
+**Next.js App Router Integration:**
+- `📤 /api/upload` - File upload and financial data processing
+- `💚 /api/health` - Health check endpoint
+- All API routes automatically work as Netlify Functions in production
+
+### 🔐 Environment Variables
+
+The following environment variables are supported:
+
+**🔑 API Keys:**
+- `VUE_APP_OPENAI_API_KEY` - OpenAI API integration
+- `VUE_APP_GEMINI_API_KEY` - Google Gemini AI
+- `VUE_APP_DEEPSEEK_API_KEY` - DeepSeek AI
+- `VUE_APP_STOCK_API_KEY_FINNHUB` - Financial data
+- `VUE_APP_STOCK_API_KEY_POLYGON` - Market data
+- `VUE_APP_NEWS_API_KEY` - News integration
+- `VUE_APP_GOOGLE_MAPS_API_KEY` - Maps integration
+
+**🏦 Financial Services:**
+- `PLAID_CLIENT_ID` & `PLAID_SECRET` - Banking integration
+- `VUE_APP_COINRANKING_KEY` - Cryptocurrency data
+- `VUE_APP_BINANCE_API_KEY` - Crypto trading data
+
+**🔐 Authentication:**
+- `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` - OAuth
+- `SESSION_SECRET` - Session management
+- `MONGO_URI` - Database connection
+
+**📊 External Services:**
+- `VUE_APP_ALPHA_VANTAGE_API_KEY` - Stock data
+- `VUE_APP_SERPER_API_KEY` - Search API
+- `VUE_APP_BRAVE_SEARCH_API_KEY` - Search integration
+
+### 🚀 Deployment
+
+**Automatic Deployment:**
+```bash
+# Deploy to production
+git push origin main        # Auto-deploys to Netlify
+
+# Manual deployment
+netlify deploy --prod       # Direct deployment
+```
+
+**Build Process:**
+1. **Environment Injection**: All environment variables are automatically loaded
+2. **Dependencies**: Node modules are cached for faster builds
+3. **API Routes**: Converted to Netlify Functions automatically
+4. **Static Assets**: Optimized and served from Netlify CDN
+5. **Edge Functions**: Next.js API routes run on Netlify Edge
+
+### 💡 Development Tips
+
+**Hot Reloading:**
+- Frontend changes reload instantly
+- API route changes restart the function automatically
+- Environment variable changes require server restart
+
+**Debugging:**
+```bash
+# View detailed logs
+netlify dev --debug
+
+# Check function logs
+netlify functions:list
+netlify functions:invoke api-upload --payload='{"test": true}'
+```
+
+**Local Testing:**
+```bash
+# Test API endpoints locally
+curl http://localhost:8888/api/health
+curl http://localhost:8888/api/upload -X POST
+```
+
+### 🔧 Technical Architecture
+
+**Development Stack:**
+- **Frontend**: Next.js 15 + React 19 + TypeScript
+- **Backend**: Next.js API Routes → Netlify Functions
+- **Database**: MongoDB (via MONGO_URI)
+- **File Storage**: Temporary storage in `/tmp` (serverless)
+- **Build Tool**: esbuild for fast bundling
+- **Deployment**: Netlify Edge with global CDN

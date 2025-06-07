@@ -17,7 +17,7 @@ import {
   UserPlusIcon,
   CogIcon,
   StarIcon,
-  MessageCircleIcon,
+  ChatBubbleOvalLeftIcon,
   FolderIcon,
   ArrowTopRightOnSquareIcon
 } from "@heroicons/react/24/outline";
@@ -302,7 +302,7 @@ export default function TeamCollaboration({ currentUser, onTeamUpdate }: TeamCol
           {
             label: 'Recent Comments',
             value: workspaces.reduce((sum, w) => sum + w.comments.length, 0),
-            icon: MessageCircleIcon,
+            icon: ChatBubbleOvalLeftIcon,
             color: 'text-orange-600'
           }
         ].map((stat, index) => (

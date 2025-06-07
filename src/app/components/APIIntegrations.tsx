@@ -252,7 +252,7 @@ export default function APIIntegrations({ onConnectionUpdate }: APIIntegrationsP
           },
           {
             label: 'Last Update',
-            value: connections.length > 0 ? formatLastSync(Math.max(...connections.filter(c => c.lastSync).map(c => c.lastSync!.getTime()))) : 'Never',
+            value: connections.length > 0 ? formatLastSync(new Date(Math.max(...connections.filter(c => c.lastSync).map(c => c.lastSync!.getTime())))) : 'Never',
             icon: ClockIcon,
             color: 'text-orange-600'
           }
